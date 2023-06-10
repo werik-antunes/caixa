@@ -1,0 +1,145 @@
+<html>
+
+<head>
+
+	<script>
+		var nome = prompt("Qual é o seu nome? ");
+		alert("Olá, " + nome + " seja muito bem vindo. Nós somos o Banco Flamingo!");
+
+        var saldo = 100.5;
+		var saque = 0;
+		var deposito = saldo + deposito ;
+        var transferencia = 0 ;
+        var agencia = 0
+		var conta = 0 
+
+		function xxx() {
+			var senha = 3589;
+			var x = Number(prompt("Qual é a sua senha?"));
+			while (x != 3589) {
+				alert("Sua senha esta incorreta!")
+				inicio();
+				x = Number(prompt("Qual é sua senha?"));
+			}
+		}
+
+		function inicio() {
+			var escolha = parseInt(prompt('                                     SELECIONE UMA OPSÇÃO \n (1: Saldo).(2: Extrato).(3: Saque).(4: Depósito).(5: Transferência).(6: Sair) ' ));
+			
+			switch (escolha) {
+				case 1:
+					ver_saldo();
+					break;
+				case 2:
+					ver_extrato();
+					break;
+				case 3:
+					fazer_saque();
+					break;
+				case 4:
+					fazer_deposito();
+					break;
+				case 5:
+					fazer_transferencia();
+					break;
+				case 6:
+					sair();
+					break;
+				default:
+					erro();
+			}
+		}
+
+		function ver_saldo() {
+			xxx();
+			alert('Seu saldo atual é: R$ ' + saldo);
+			inicio();
+		}
+		function ver_extrato() {
+			xxx();
+			alert("------------------------ EXTRATO ------------------------\n Agencia: " + agencia +  " \n Conta: " + conta +  " \n Nome: " + nome + "  \n CPF: 02365478910 \n ------------------------------------------------------------ \n Saldo: R$ " + saldo + " Data 26/05/2023\n Saque: R$ " + saldo + "    Data 26/05/2023 \n Deposito: R$ " + deposito + "  Data 26/05/2023  \n Compras: R$ 59.99    Data 26/05/2023 \n Transferencia: R$ " + transferencia + "      Data 26/05/2023 \n Saldo Negativo: R$ 00.00    Data 26/05/2023 ");
+			inicio();
+		}
+		function fazer_saque() {
+			xxx();
+			saque = parseFloat(prompt('Qual o valor para saque?'));
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número!');
+				fazer_saque();
+			} else if (saque <= 0 || saque > saldo) {
+				alert("Operaçâo não Autorizada!");
+				inicio();
+			} else {
+				saldo -= saque;
+				alert("Saque efetuado!");
+				ver_saldo();
+			}
+		}
+		function fazer_deposito() {
+			xxx();
+			 deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número!');
+				fazer_deposito();
+			} else if (deposito <= 0) {
+				alert("Operação não Autorizada!")
+				fazer_deposito();
+			} else {
+				saldo += deposito;
+				alert("Deposito realizado com sucesso!")
+				ver_saldo();
+			}
+		}
+		function fazer_transferencia() {
+			xxx();
+			transferencia = parseFloat(prompt("Qual o valor da transferencia?"));
+			while(transferencia > saldo || transferencia <= 0){
+				alert("Operação não autorizada!");
+				inicio();
+			}
+
+			while (isNaN(transferencia) || transferencia === ' ') {
+				alert("Por favor, informe um numero!");
+				inicio();
+			}
+			
+			agencia = Number(prompt("Digite o numero da Agencia"));
+			while (isNaN(agencia) || isNaN(transferencia) || agencia === ' ') {
+				alert("Por favor, informe um numero!");
+				agencia = Number(prompt("Digite o numero da Agencia"));
+			}
+			conta = Number(prompt("Digite o numero da conta"));
+			while (isNaN(conta) || conta === '') {
+				alert("Por favor, informe um numero!");
+				conta = Number(prompt("Digite o numero da conta"));
+			}
+			var confirma = confirm("----------------------- Revise seus Dados ----------------------- \n Agencia: " + agencia + "\n Conta: " + conta + " \n Valor da Transferencia R$ " + transferencia + "\n ------------------------------------------------------------" )
+			if (confirma) {
+				saldo -= transferencia;
+				alert("Transferencia efetuada com sucesso!");
+				ver_saldo();
+			} else {
+				fazer_transferencia();
+			}
+		}
+
+		function sair() {
+				alert("Muito obrigado por ultilizar nossos serviços do Banco Flamingo " + nome + ", foi um prazer ter você por aqui! ")
+				
+				inicio();
+				window.close();
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 6');
+			inicio();
+		}
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
